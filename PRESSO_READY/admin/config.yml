@@ -35,6 +35,10 @@ collections:
             name: "whatsapp_message"
             widget: "string"
 
+          - label: "Instagram ссылка"
+            name: "instagram_url"
+            widget: "string"
+
           - label: "Башкы текст"
             name: "hero_title_main"
             widget: "string"
