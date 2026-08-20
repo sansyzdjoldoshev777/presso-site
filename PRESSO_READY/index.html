@@ -66,5 +66,77 @@
 
   <footer><div class="container"><div class="footer-grid"><div><div class="brand" style="color:#fff">PR<span class="e">E</span>SSO</div><p>Профессиональная химчистка мягкой мебели в Бишкеке.</p></div><div><h4>Навигация</h4><p><a href="#services">Услуги</a></p><p><a href="#prices">Цены</a></p><p><a href="#how">Как работаем</a></p></div><div><h4>Контакты</h4><p><a href="tel:+996505688869">+996 505 688 869</a></p><p><a href="https://wa.me/996505688869" target="_blank">WhatsApp</a></p><p>Бишкек, Кыргызстан</p></div></div><div class="copyline">© 2026 PRESSO. Все права защищены.</div></div></footer>
   <div class="floating"><a class="wa" href="https://wa.me/996505688869?text=Здравствуйте%2C%20хочу%20заказать%20химчистку" target="_blank" aria-label="WhatsApp">WA</a></div>
+<script>
+(async function () {
+  try {
+    const response = await fetch('/content/site.json', { cache: 'no-store' });
+    const d = await response.json();
+
+    const digits = String(d.phone_digits || '').replace(/\D/g, '');
+    const phone = d.phone_display;
+    const tel = 'tel:+' + digits;
+    const whatsapp =
+      'https://wa.me/' + digits +
+      '?text=' + encodeURIComponent(d.whatsapp_message || '');
+
+    // Телефон жана WhatsApp
+    document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+      a.href = tel;
+      if (a.textContent.includes('+996')) a.textContent = phone;
+    });
+
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+      a.href = whatsapp;
+    });
+
+    const topPhone = document.querySelector('.topbar b');
+    if (topPhone) topPhone.textContent = phone;
+
+    // Шаар
+    const topLocation = document.querySelector('.topbar span');
+    if (topLocation) {
+      topLocation.textContent = '📍 ' + d.city + ' • Выезд на дом';
+    }
+
+    // Башкы текст
+    const heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) {
+      heroTitle.innerHTML = '';
+      heroTitle.append(document.createTextNode(d.hero_title_main + ' '));
+
+      const blue = document.createElement('span');
+      blue.textContent = d.hero_title_highlight;
+      heroTitle.appendChild(blue);
+    }
+
+    const heroDescription = document.querySelector('.hero p');
+    if (heroDescription) {
+      heroDescription.textContent = d.hero_description;
+    }
+
+    // Кызматтардагы баалар
+    const servicePrices = document.querySelectorAll('.service .price');
+
+    if (servicePrices[0]) servicePrices[0].textContent = d.sofa_price;
+    if (servicePrices[1]) servicePrices[1].textContent = d.armchair_price;
+    if (servicePrices[2]) servicePrices[2].textContent = d.chair_no_back_price;
+    if (servicePrices[3]) servicePrices[3].textContent = d.mattress_single_price;
+
+    // Прайс-лист
+    const prices = document.querySelectorAll('.price-row b');
+
+    if (prices[0]) prices[0].textContent = d.sofa_price;
+    if (prices[1]) prices[1].textContent = d.armchair_price;
+    if (prices[2]) prices[2].textContent = d.chair_no_back_price;
+    if (prices[3]) prices[3].textContent = d.chair_back_price;
+    if (prices[4]) prices[4].textContent = d.mattress_single_price;
+    if (prices[5]) prices[5].textContent = d.mattress_onehalf_price;
+    if (prices[6]) prices[6].textContent = d.mattress_double_price;
+
+  } catch (error) {
+    console.log('PRESSO settings error:', error);
+  }
+})();
+</script>
 </body>
 </html>
