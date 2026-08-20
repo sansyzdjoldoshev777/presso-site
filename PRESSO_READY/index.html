@@ -132,7 +132,30 @@
     if (prices[4]) prices[4].textContent = d.mattress_single_price;
     if (prices[5]) prices[5].textContent = d.mattress_onehalf_price;
     if (prices[6]) prices[6].textContent = d.mattress_double_price;
+    // Instagram кнопка
+    if (d.instagram_url) {
+      const floating = document.querySelector('.floating');
 
+      if (floating && !document.getElementById('instagram-link')) {
+        floating.style.display = 'flex';
+        floating.style.gap = '10px';
+
+        const ig = document.createElement('a');
+        ig.id = 'instagram-link';
+        ig.href = d.instagram_url;
+        ig.target = '_blank';
+        ig.rel = 'noopener noreferrer';
+        ig.textContent = 'IG';
+        ig.setAttribute('aria-label', 'Instagram');
+
+        ig.style.cssText =
+          'width:58px;height:58px;border-radius:50%;display:grid;' +
+          'place-items:center;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);' +
+          'color:white;font-weight:800;text-decoration:none;';
+
+        floating.appendChild(ig);
+      }
+    }
   } catch (error) {
     console.log('PRESSO settings error:', error);
   }
