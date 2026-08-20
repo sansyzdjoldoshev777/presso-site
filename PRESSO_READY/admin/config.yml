@@ -1,0 +1,76 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://presso-kg.netlify.app
+
+media_folder: "PRESSO_READY/assets/uploads"
+public_folder: "/assets/uploads"
+
+editor:
+  preview: false
+
+collections:
+  - name: "settings"
+    label: "PRESSO сайт"
+    files:
+      - label: "Негизги маалымат"
+        name: "site"
+        file: "PRESSO_READY/content/site.json"
+        format: "json"
+        fields:
+          - label: "Шаар"
+            name: "city"
+            widget: "string"
+
+          - label: "Телефон"
+            name: "phone_display"
+            widget: "string"
+
+          - label: "Телефон цифра менен"
+            name: "phone_digits"
+            widget: "string"
+
+          - label: "WhatsApp билдирүү"
+            name: "whatsapp_message"
+            widget: "string"
+
+          - label: "Башкы текст"
+            name: "hero_title_main"
+            widget: "string"
+
+          - label: "Башкы көк текст"
+            name: "hero_title_highlight"
+            widget: "string"
+
+          - label: "Башкы описание"
+            name: "hero_description"
+            widget: "text"
+
+          - label: "Диван баасы"
+            name: "sofa_price"
+            widget: "string"
+
+          - label: "Кресло баасы"
+            name: "armchair_price"
+            widget: "string"
+
+          - label: "Стул без спинки"
+            name: "chair_no_back_price"
+            widget: "string"
+
+          - label: "Стул со спинкой"
+            name: "chair_back_price"
+            widget: "string"
+
+          - label: "Матрас 1 спальный"
+            name: "mattress_single_price"
+            widget: "string"
+
+          - label: "Матрас 1.5 спальный"
+            name: "mattress_onehalf_price"
+            widget: "string"
+
+          - label: "Матрас 2 спальный"
+            name: "mattress_double_price"
+            widget: "string"
